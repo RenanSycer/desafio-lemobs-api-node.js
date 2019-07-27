@@ -7,6 +7,8 @@ const express = require('express');
 const app = express();
 const cors = require('cors');
 
+const db = require('./config/pg_connection');
+
 // Configurações Swagger
 
 app.use(cors());
