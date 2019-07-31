@@ -19,11 +19,6 @@ const sequelize = new Sequelize(process.env.BD_NOME,process.env.BD_USUARIO, proc
     }
 });
 
-const db =  {};
-db.Sequelize = Sequelize;
-db.sequelize = sequelize;
-
-
 sequelize.authenticate()
   .then(() => {
      console.log('CONECTOU!!!!!');
@@ -32,7 +27,12 @@ sequelize.authenticate()
       console.error('Deu erro :', err);
   });
 
-db.alunos =  require('../api/models/alunos.js')(sequelize,Sequelize);
+  const db =  {};
+  db.Sequelize = Sequelize;
+  db.sequelize = sequelize;
+
+  db.alunos =  require('../api/models/alunos.js')(sequelize,Sequelize);
+  db.enderecos = require('../api/models/enderecos.js')(sequelize,Sequelize);
 
 module.exports = urlConexao;
 module.exports = db;
