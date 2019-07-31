@@ -2,6 +2,7 @@
 //const Sequelize = require('Sequelize');
 //const db = require('./config/pg_connection');
 
+const Endereco = require('./enderecos.js');
 module.exports =(sequelize,Sequelize) => {
     const Aluno = sequelize.define('alunos',{
         nome:{
@@ -23,7 +24,9 @@ module.exports =(sequelize,Sequelize) => {
         }
     });
 
-
-    Aluno.hasMany(models.Endereco,{foreingKey:'aluno_id'})
+    Endereco.associate = function(models){
+        Aluno.hasMany(models.Endereco,{foreingKey:'aluno_id'});
+    }
+    
     return Aluno;
 }

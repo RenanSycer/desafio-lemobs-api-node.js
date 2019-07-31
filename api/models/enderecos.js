@@ -1,3 +1,6 @@
+
+const Aluno = require('./alunos.js');
+
 module.exports  = (sequelize,Sequelize) => {
     const Endereco = sequelize.define('enderecos',{
         rua:{
@@ -20,9 +23,9 @@ module.exports  = (sequelize,Sequelize) => {
         }
     }); 
 
-    //Endereco.associate = function(models){
+    Endereco.associate = function(models){
         Endereco.belongsTo(models.Aluno,{foreingKey:'aluno_id'})
-    //}
+    }
 
     return Endereco
 
